@@ -1,0 +1,13 @@
+{
+  "name": "glesys-node_glesys",
+  "version": "0.0.1",
+  "author": "GleSYS Internet Services AB",
+  "summary": "Puppet face module for GleSYS instances",
+  "license": "Apache 2.0",
+  "source": "https://github.com/glesys/puppet_node_glesys.git",
+  "project_page": "https://github.com/glesys/puppet_node_glesys",
+  "issues_url": "https://github.com/glesys/puppet_node_glesys/issues",
+  "dependencies": [
+  ]
+}
+
