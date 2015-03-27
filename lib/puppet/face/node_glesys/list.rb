@@ -10,13 +10,10 @@ Puppet::Face.define :node_glesys, '0.0.1' do
       This action obtains a list of instances from GleSYS and
       displays them on the console output.
     EOT
-
     Puppet::CloudPackGleSYS.add_list_options(self)
-
     when_invoked do |options|
       Puppet::CloudPackGleSYS.list(options)
     end
-
     when_rendering :console do |value|
       value.collect do |serverid,status_hash|
         "#{serverid}:\n" + status_hash.collect do |field, val|
@@ -24,9 +21,7 @@ Puppet::Face.define :node_glesys, '0.0.1' do
         end.sort.join("\n")
       end.sort.join("\n")
     end
-
     returns 'Array of attribute hashes containing basic information about each instance.'
-
     examples <<-'EOT'
       List every instance:
 

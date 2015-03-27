@@ -20,16 +20,13 @@ module Puppet::CloudPackGleSYS
     end
 
     def add_datacenter_option(action)
-
       action.option '--datacenter=' do
         summary 'Data center used to create machine instance.'
         description <<-EOT
           The data center used to create new machine instances.
           Currently, GleSYS have data centers in Stockholm and Falkenberg.
         EOT
-
         default_to { 'Stockholm' }
-
       end
     end
 
@@ -41,9 +38,7 @@ module Puppet::CloudPackGleSYS
           The Cloud platform used to create new machine instances.
           Currently, GleSYS supports OpenVZ and VMware.
         EOT
-
         default_to { 'OpenVZ' }
-
       end
     end
 
