@@ -303,9 +303,9 @@ module Puppet::CloudPackGleSYS
 
     def sshkey_list(options)
       connection = create_connection(options)
-      sshkeys = connection.sshkeys
+      ssh_keys = connection.ssh_keys
       hsh = {}
-      sshkeys.each do |k|
+      ssh_keys.each do |k|
         hsh[k.id] = {
           "id"          => k.id,
           "description" => k.description,

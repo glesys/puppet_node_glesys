@@ -34,12 +34,11 @@ $ sudo apt-get install git ruby ruby-dev build-essential libz-dev
 $ gem install --verbose --user-install puppet
 ```
 
-### Build and install fog.io with additional GleSYS support
+### Build and install fog.io master
 
 ```
-$ git clone git@github.com:tnn2/fog.git
+$ git clone git@github.com:fog/fog.git
 $ cd fog
-$ git checkout glesys_sshkeys
 $ gem build fog.gemspec
 $ gem install --verbose --user-install ./fog-1.28.0.gem
 ```
