@@ -2,16 +2,16 @@ require 'puppet/face/node_glesys'
 require 'puppet/cloudpack_glesys'
 
 Puppet::Face.define :node_glesys, '0.0.1' do
-  action :sshkey_list do
+  action :ssh_key_list do
     summary 'List saved SSH keys.'
     description <<-'EOT'
       This action lists the SSH pubkeys that have been saved on the GleSYS account.
       Any key id from this list is a valid argument for the create action's
       --sshkeyids option.
     EOT
-    Puppet::CloudPackGleSYS.add_sshkey_list_options(self)
+    Puppet::CloudPackGleSYS.add_ssh_key_list_options(self)
     when_invoked do |options|
-      Puppet::CloudPackGleSYS.sshkey_list(options)
+      Puppet::CloudPackGleSYS.ssh_key_list(options)
     end
     when_rendering :console do |value|
       value.collect do |id,hash|
@@ -22,13 +22,13 @@ Puppet::Face.define :node_glesys, '0.0.1' do
     examples <<-'EOT'
       List the available key pairs:
 
-          $ puppet node_glesys sshkey_list
+          $ puppet node_glesys ssh_key_list
           707: test_ed25519
           708: test_ecdsa
 
       Get the key pair list as an array of JSON hashes:
 
-          $ puppet node_glesys sshkey_list --render-as json
+          $ puppet node_glesys ssh_key_list --render-as json
           {
             "707":{
               "id":707,

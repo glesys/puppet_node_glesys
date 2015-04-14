@@ -11,13 +11,11 @@
     * [Configure GleSYS user credentials](#quickstart-configure)
     * [Start exploring puppet face commands](#quickstart-done)
 3. [Production setup](#production-setup)
-    * [Automatically register new servers with your puppet master](#bootstrap)
 
 ## Overview
 
 This module provides [Puppet Faces](https://puppetlabs.com/faces/feed) commands for working
-with virtual servers hosted on the GleSYS platform. In the future `node_glesys` will also provide
-classification and bootstrapping capabilities similar to
+with virtual servers hosted on the GleSYS platform. `node_glesys` also provides bootstrapping capabilities similar to
 [Puppet Cloud Provisioner](https://docs.puppetlabs.com/pe/latest/cloudprovisioner_overview.html).
 
 ## Quickstart
@@ -34,13 +32,10 @@ $ sudo apt-get install git ruby ruby-dev build-essential libz-dev
 $ gem install --verbose --user-install puppet
 ```
 
-### Build and install fog.io master
+### Install fog.io
 
 ```
-$ git clone git@github.com:fog/fog.git
-$ cd fog
-$ gem build fog.gemspec
-$ gem install --verbose --user-install ./fog-1.28.0.gem
+$ gem install --verbose --user-install -version ">= 1.29.0" fog
 ```
 
 ### Build and install the GleSYS module for puppet
@@ -75,6 +70,37 @@ $  ~/.gem/ruby/1.9.1/bin/puppet node_glesys create --hostname=mytestserver --roo
 
 ## Production setup
 
-### Automatically register new servers with your puppet master
+Assuming you have installed the node_glesys module on your puppet master and/or your workstation is allowed to sign new host certificates, the following should work:
+```
+puppet node_glesys bootstrap \
+--hostname=app1.dev.mydomain.com \
+--rootpassword=supersecret \
+--install-shellscript=examples/setup_glesys_server.sh
+```
 
-This is not yet available but will be supported soon.
+... and should produce output silimar to this:
+
+```
+Notice: Creating new server ...
+Notice: Creating new server ... Done
+Notice: Created GleSYS server vz2313626 with hostname app1.dev.mydomain.com.
+Notice: Waiting for server to come online
+Notice: Waiting for SSH daemon on 159.253.24.23:22
+Notice: 60 seconds ...
+Notice: Proceeding with init
+Notice: Uploading install script examples/setup_glesys_server.sh...
+Notice: Uploading install script ... Done
+Notice: Executing remote command ...
+Notice: Command: /usr/bin/env sh /root/setup_glesys_server.sh
+[installation tasks run]
+[....] Starting puppet agent.
+Notice: Executing remote command ...
+Notice: Command: puppet agent --configprint certname
+Notice: app1.dev.mydomain.com
+Notice: Puppet is now installed on: app1.dev.mydomain.com
+Notice: Signing certificate ...
+Notice: Signing certificate ... Done
+```
+
+Note that you must to customize `setup_glesys_server.sh` according to your specific site requirements so that your new server can find it's Puppet Master.
+
