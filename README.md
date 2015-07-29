@@ -44,7 +44,7 @@ $ gem install --verbose --user-install -version ">= 1.29.0" fog
 $ git clone git@github.com:GleSYS/puppet_node_glesys.git
 $ cd puppet_node_glesys
 $ ~/.gem/ruby/1.9.1/bin/puppet module build
-$ ~/.gem/ruby/1.9.1/bin/puppet module install pkg/glesys-node_glesys-0.0.1.tar.gz
+$ ~/.gem/ruby/1.9.1/bin/puppet module install pkg/glesys-node_glesys-0.0.2.tar.gz
 ```
 
 ### Configure GleSYS user credentials

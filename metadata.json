@@ -1,6 +1,6 @@
 {
   "name": "glesys-node_glesys",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "GleSYS Internet Services AB",
   "summary": "Puppet face module for GleSYS instances",
   "license": "Apache 2.0",
