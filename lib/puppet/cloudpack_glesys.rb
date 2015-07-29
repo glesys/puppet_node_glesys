@@ -1,7 +1,6 @@
 require 'fog'
 
 # GleSYS Adaption of Puppet::CloudPack from Puppet Cloud Provisioner
-
 module Puppet::CloudPackGleSYS
   class InstanceErrorState < Exception
   end
@@ -491,7 +490,7 @@ module Puppet::CloudPackGleSYS
       templates = connection.templates
       hsh = {}
       templates.each do |t|
-        hsh[t.name] = {
+c        hsh[t.name] = {
           "name"       => t.name,
           "platform"   => t.platform
         }
@@ -513,7 +512,10 @@ module Puppet::CloudPackGleSYS
 
     def create_connection(options = {})
       Fog.credential = options[:credentials].to_sym if options[:credentials]
-      Fog::Compute.new(:provider => "GleSYS")
+      Fog::Connection.add_user_agent("puppet_node_glesys/0.0.2")	
+      Fog::Compute.new(
+			:provider => "GleSYS"
+			)
     end
 
     def create_server(servers, options = {})
