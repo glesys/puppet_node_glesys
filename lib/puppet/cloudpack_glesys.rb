@@ -490,7 +490,7 @@ module Puppet::CloudPackGleSYS
       templates = connection.templates
       hsh = {}
       templates.each do |t|
-c        hsh[t.name] = {
+        hsh[t.name] = {
           "name"       => t.name,
           "platform"   => t.platform
         }
